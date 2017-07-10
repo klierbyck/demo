@@ -1,0 +1,46 @@
+﻿1.选中项目文件夹，右键选择"$ git bash here"
+
+2.在cmd中输入"$ git init"初始化一个本地的仓库
+
+3.使用"$ git add '文件名'"将一个没有被跟踪的文件添加到跟踪列表或"$ git add --all"将所有未被跟踪的文件添加到跟踪列表，如果不想添加某些文件到跟踪列表可以在项目的根目录建立一个.gitignore的文件，将要忽视的文件名添加到此文件的内容中
+
+4.通过"$ git status"查看本地仓储的状态;"$ git status -s"是输出简要的变更日志，通过git log获取详细日志
+
+5."$ git commit -m '说明文字'" 将本地的变化提交的本地的仓库文件夹存档。备注：如果修改了代码，可以直接使用git commit -am '说明文字' 跳过add步骤。
+
+6."$ git diff"可以用于对比当前状态和版本库中状态的变化
+
+7.在github上创建一个和项目名字相同的仓储，使用以下两条命令提交本地代码到github服务器
+	$ git remote add origin https://github.com/klierbyck/xiangmu.git
+	$ git push -u origin master
+
+8.使用以下命令将github上更新的代码下载到本地
+	$ git pull origin master
+
+9.删除本地文件 $ git rm -r '文件名'，停止文件跟踪但不删除文件 $ git rm --cached '文件名'
+
+10.其他
+	查看分支：$ git branch
+	创建分支：$ git branch '分支名'
+	切换分支：$ git checkout '分支名'
+	建立并且换分支：$ git checkout -b '分支名'
+	提交分支：$ git push -u origin '分支名'
+	删除本地已合并分支：先到master，然后$ git branch –d '分支名'
+	删除本地未合并分支：先到master，然后$ git branch –D '分支名'
+	删除远端分支：先到master，然后$ git push origin –delete '分支名'
+	合并分支：先到master，然后使用$ git merge origin '分支名'
+
+11.从远程下载一份最新的代码到本地，使用$ git clone '远端地址'
+
+12.查看版本$ git log或$ git log --pretty=oneline
+回退历史版本$ git revert 'git log中的commit代码'，之后按esc 输入':wq'按回车
+切换代码版本$ git reset --hard 'git log中的commit代码'
+
+
+
+其他命令
+$  git config --global user.name "输入你的用户名"
+$  git config --global user.email "输入你的邮箱"
+
+$  git config --global --replace-all user.email "输入你的邮箱" 
+$  git config --global --replace-all user.name "输入你的用户名"
