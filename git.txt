@@ -33,7 +33,7 @@
 11.从远程下载一份最新的代码到本地，使用$ git clone '远端地址'
 
 12.查看版本$ git log或$ git log --pretty=oneline
-回退历史版本$ git revert 'git log中的commit代码'，之后按esc 输入':wq'按回车
+回退历史版本$ git revert 'git log中的commit代码'，按i输入备注，然后按esc 输入':wq'按回车
 切换代码版本$ git reset --hard 'git log中的commit代码'
 
 
