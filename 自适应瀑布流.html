@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		#wrap li {
+			text-align: center;
+			/*border:2px solid #F5CEFE;*/
+			border: 1px solid #F5CEFE;
+			box-shadow: 4px 4px 10px #7E797F;
+			border-radius: 8px;
+			font-size: 100px;
+			width: 200px;
+			list-style: none;
+			position: absolute;
+			transition: all .5s;
+			margin: 10px;
+		}
+
+		img {
+			width: 200px;
+			border-radius: 8px;
+		}
+	</style>
+</head>
+
+<body>
+	<ul id="wrap">
+	</ul>
+</body>
+<script type="text/javascript">
+	var num = 0; //定义一个初始num 用于li内部的HTML显示
+	//获取wrap元素
+	var wrap = document.querySelector("#wrap");
+	// 为window添加监听事件，当窗口大小发生改变时执行fun
+	window.onresize = function () {
+		getCols();
+		var lis = document.querySelectorAll("li");
+		for (var i = 0; i < lis.length; i++) {
+			setPos(lis[i]);
+		}
+		//			console.log(document.documentElement.clientHeight)
+	}
+
+	function rand(min, max) {
+		return parseInt(Math.random() * (max - min)) + min;
+	}
+	//构建LI元素方法 只用于创建LI 生成高度 追加进父元素
+	//并不执行left 和 top 的指定
+	function createLi() {
+		var li = document.createElement("li");
+		//			var img = document.createElement("img");
+		//			img.src = "6.jpg";
+		var h = rand(100, 200);
+		//			img.style.height = h+"px";
+		li.innerHTML = num;
+		li.style.height = h + "px";
+		li.style.lineHeight = h + "px";
+		//			li.appendChild(img);
+		wrap.appendChild(li);
+		//调用setPos方法将新创建的li元素传给它 用于修改li的位置
+		setPos(li);
+	}
+	//定义colsArr 用于存储元素的高度
+	var colsArr;
+	//获取当前页面宽度下的总列数 columns
+	function getCols() {
+		colsArr = [];
+		//获取当前页面的宽度
+		var winWidth = document.documentElement.clientWidth;
+		var cols = parseInt(winWidth / 200);
+		//根据当前页面得到的列数 动态添加colsArr的元素 初始为0
+		for (var i = 0; i < cols; i++) {
+			//推入方法
+			//				colsArr.push(0);
+			//指定下标方法
+			colsArr[i] = 0;
+		}
+	}
+	//创建一个函数 只用于修改元素的left值及top值
+	function setPos(ele) {
+		var minIndex = 0;
+		var minHeight = colsArr[minIndex];
+		for (var i = 0; i < colsArr.length; i++) {
+			if (minHeight > colsArr[i]) {
+				minHeight = colsArr[i];
+				minIndex = i;
+			}
+		}
+		ele.style.left = minIndex * (200 + 10) + "px";
+		ele.style.top = colsArr[minIndex] + 10 + "px";
+		colsArr[minIndex] += ele.offsetHeight + 10;
+	}
+	getCols();
+	_run();
+
+	function _run(val) {
+		//当val不传入时  赋予val一个默认值 30
+		val = val ? val : 30;
+		for (var i = 0; i < val; i++) {
+			num++;
+			createLi();
+		}
+	}
+
+	//为window添加滚动监听事件
+	window.onscroll = function () {
+		//取当前窗口的总高度
+		var sh = document.body.scrollHeight;
+		//取当前视口的高度
+		var ch = document.documentElement.clientHeight;
+		//取当前滚动的距离
+		var st = document.body.scrollTop;
+		if (ch + st == sh) {
+			_run(20);
+		}
+	}
+</script>
+
+</html>
