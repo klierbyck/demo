@@ -1,6 +1,6 @@
 /*
  * @Author: klier
- * @Date:   2017-07-27
+ * @Date:   2017-07-27 
  */
 'use strict';
 
@@ -28,15 +28,15 @@ var reload = browserSync.reload;
 
 
 //某文件删除时，将build中生成的对应文件删除
-// gulp.task('clean', function () {
-//   return gulp.src('./build', {
-//       read: false
-//     })
-//     .pipe(clean());
-// })
+gulp.task('clean', function () {
+  return gulp.src('./build', {
+      read: false
+    })
+    .pipe(clean());
+})
 
 // less转css、增加前缀、压缩
- gulp.task('style', function () {
+gulp.task('style', ['clean'], function () {
   gulp.src('src/styles/*.less')
     .pipe(less())
     .pipe(autoprefixer({
@@ -49,11 +49,11 @@ var reload = browserSync.reload;
     .pipe(reload({
       stream: true
     }));
-}); 
+});
 
 
- //css压缩
-// gulp.task('style', function () {
+//css压缩
+// gulp.task('style', ['clean'], function () {
 //   gulp.src('src/styles/*.css')
 //     .pipe(cssnano())
 //     .pipe(gulp.dest('build/styles'))
@@ -64,7 +64,7 @@ var reload = browserSync.reload;
 
 
 // js文件合并、压缩
-gulp.task('script', function () {
+gulp.task('script', ['clean'], function () {
   gulp.src('src/scripts/*.js')
     .pipe(concat('app.js'))
     .pipe(uglify())
@@ -76,7 +76,7 @@ gulp.task('script', function () {
 
 /* 
 // js文件压缩
-gulp.task('script', function () {
+gulp.task('script', ['clean'], function () {
   gulp.src('src/scripts/*.js')
     .pipe(uglify())
     .pipe(gulp.dest('build/scripts'))
@@ -87,23 +87,23 @@ gulp.task('script', function () {
 */
 
 //图片压缩
-gulp.task('image', function () {
+gulp.task('image', ['clean'], function () {
   gulp.src('src/images/*.{png,jpg,gif,ico}')
     .pipe(imagemin({
       //类型：Number  默认：3  取值范围：0-7（优化等级）
-      optimizationLevel: 5, 
+      optimizationLevel: 5,
       //类型：Boolean 默认：false 无损压缩jpg图片
-      progressive: true, 
+      progressive: true,
       //类型：Boolean 默认：false 隔行扫描gif进行渲染
-      interlaced: true, 
+      interlaced: true,
       //类型：Boolean 默认：false 多次优化svg直到完全优化
-      multipass: true 
+      multipass: true
     }))
     .pipe(gulp.dest('build/images'))
     .pipe(reload({
       stream: true
     }));
-    gulp.src('src/*.{png,jpg,gif,ico}')
+  gulp.src('src/*.{png,jpg,gif,ico}')
     .pipe(imagemin())
     .pipe(gulp.dest('build'))
     .pipe(reload({
@@ -112,7 +112,7 @@ gulp.task('image', function () {
 });
 
 //html压缩
-gulp.task('html', function () {
+gulp.task('html', ['clean'], function () {
   gulp.src('src/*.html')
     .pipe(htmlmin({
       // 移除注释
@@ -138,8 +138,19 @@ gulp.task('html', function () {
     }));
 });
 
-//开启服务器、执行默认任务、监听文件变化刷新浏览器
-gulp.task('server', ['style', 'script', 'image', 'html'], function () {
+//监听文件变化
+gulp.task('watch', function () {
+  //监听文件变化执行对应任务
+  // gulp.watch('src/styles/*.less', ['style']);
+  // gulp.watch('src/styles/*.css', ['style']);
+  // gulp.watch('src/scripts/*.js', ['script']);
+  // gulp.watch('src/images/*.*', ['image']);
+  // gulp.watch('src/*.html', ['html']);
+  gulp.watch(['src/styles/*.less', 'src/scripts/*.js', 'src/images/*.*', 'src/*.html'], ['style', 'script', 'image', 'html']);
+});
+
+//清除build目录下的文件、开启服务器、执行任务
+gulp.task('serve', ['clean'], function () {
   browserSync({
     notify: false,
     port: 2017,
@@ -147,10 +158,8 @@ gulp.task('server', ['style', 'script', 'image', 'html'], function () {
       baseDir: ['build']
     }
   });
-  //监听文件变化执行对应任务
-  gulp.watch('src/styles/*.less', ['style']);
-  // gulp.watch('src/styles/*.css', ['style']);
-  gulp.watch('src/scripts/*.js', ['script']);
-  gulp.watch('src/images/*.*', ['image']);
-  gulp.watch('src/*.html', ['html']);
+  gulp.start('style', 'script', 'image', 'html', 'watch');
 });
+
+//执行默认任务
+gulp.task('default', ['serve']);
