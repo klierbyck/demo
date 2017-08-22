@@ -1,0 +1,8 @@
+1.数据格式化：JSONView
+2.跨域插件：Allow-Control-Allow-Origin
+3.angular插件：AngularJS Batarang
+4.vue插件：Vue.js devtools
+5.react插件：React Developer Tools
+6.网站流量分析插件：SimilarWeb
+7.网站实用技术分析插件：BuiltWith Technology Profiler
+8.接口调试插件： Postman Interceptor和ApiDebug
