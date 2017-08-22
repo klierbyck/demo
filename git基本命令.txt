@@ -3,6 +3,7 @@
 2.在cmd中输入"$ git init"初始化一个本地的仓库
 
 3.使用"$ git add '文件名'"将一个没有被跟踪的文件添加到跟踪列表或"$ git add --all"将所有未被跟踪的文件添加到跟踪列表，如果不想添加某些文件到跟踪列表可以在项目的根目录建立一个.gitignore的文件，将要忽视的文件名添加到此文件的内容中
+注意：提交到缓存区却未提交到仓库可以通过$ git reset HEAD "文件名"从缓存区拿回来
 
 4.通过"$ git status"查看本地仓储的状态;"$ git status -s"是输出简要的变更日志，通过git log获取详细日志
 
@@ -34,9 +35,11 @@
 
 11.从远程下载一份最新的代码到本地，使用$ git clone '远端地址'
 
-12.查看版本$ git log或$ git log --pretty=oneline
+12.查看版本$ git log或$ git log --oneline或$ git log --pretty=oneline
 回退历史版本$ git revert 'git log中的commit代码'，之后按i输入备注，然后esc 输入':wq'按回车
 切换代码版本$ git reset --hard 'git log中的commit代码'
+回退之后可以使用$ git reflog 查看所有历史版本
+
 
 
 
@@ -50,7 +53,7 @@ $  git config --global --replace-all user.name "输入你的新用户名"
 
 二、生成SSH密钥过程：
 1.查看是否已经有了ssh密钥：cd ~/.ssh
-如果没有密钥则不会有此文件夹，有则备份删除
+如果没有密钥则不会有此文件夹，有则cat id_rsa-pub查看秘钥
 2.生存密钥：
 $ ssh-keygen -t rsa -C "输入你的邮箱"
 按3个回车，密码为空。
@@ -93,3 +96,11 @@ The key fingerprint is:
 	$ git checkout dev
 12.将本地dev分支上的代码提交到服务器上。
 	$ git push
+
+
+
+
+
+
+
+
