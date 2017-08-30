@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <style type="text/css">
+    	*{
+    		margin: 0;
+    		padding: 0;
+    		box-sizing: border-box;
+    	}
+    	#box{
+    		width: 400px;
+    		height: 300px;
+    		border: 1px solid #ddd;
+    		position: fixed;
+    		right: 0;
+    		bottom: -300px;
+    	}
+    	#box p{
+    		height: 50px;
+    		line-height: 50px;
+    		padding-left: 10px;
+    		background: yellow;
+    	}
+    	#box p span{
+    		float: right;
+    		margin-right: 10px;
+    	}
+    	#box textarea{
+    		height: 200px;
+    		width: 100%;
+    		border: none;
+    	}
+    	#send{
+    		height: 50px;
+    		background: #ccc;
+    		line-height: 50px;
+    	}
+    	#send button{
+    		height: 30px;
+    		width: 80px;
+    		line-height: 30px;
+    		text-align: center;
+    		float: right;
+    		margin: 10px 10px 0 0;
+    	}
+    </style>
+</head>
+<body>
+	<div id="box">
+
+	</div>
+	<script type="text/javascript">
+		//启动定时器
+		var timer=setInterval(fn,10);
+		function fn(){
+			//获取bottom值
+			var sty=box.currentStyle || window.getComputedStyle(box,null);
+			var bottom=parseInt(sty.bottom);
+			if(bottom==0){
+				clearInterval(timer);
+			}else{
+				box.style.bottom=bottom+3+"px";
+			}
+		}
+		//获取x节点
+		var oSpan=document.getElementsByTagName("span")[0];
+		//关掉延时继续弹出
+		oSpan.onclick=function(){
+			box.style.bottom="-300px";
+			setTimeout(function(){
+				timer=setInterval(fn,10);
+			},2000);
+
+		}
+	</script>
+</body>
+</html>

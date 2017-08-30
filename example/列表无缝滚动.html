@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <style type="text/css">
+    	*{
+    		margin: 0;
+    		padding: 0;
+    		box-sizing: border-box;
+    	}
+    	#scroll{
+    		width: 300px;
+    		height: 200px;
+    		border: 1px solid #ddd;
+    		margin: 50px auto;
+    		padding-left: 100px;
+    		overflow: hidden;
+    	}
+    	#scroll li{
+    		line-height: 40px;
+    	}
+    	#scroll li a{
+    		text-decoration: none;
+    		color: #000;
+    	}
+    	#scroll li a:hover{
+    		text-decoration: underline;
+    		color: red;
+    	}
+    </style>
+</head>
+<body>
+	<div id="scroll">
+		<ol>
+			<li><a href="#">我是列表项</a></li>
+			<li><a href="#">我是列表项</a></li>
+			<li><a href="#">我是列表项</a></li>
+			<li><a href="#">我是列表项</a></li>
+			<li><a href="#">我是列表项</a></li>
+			<li><a href="#">我是列表项</a></li>
+			<li><a href="#">我是列表项</a></li>
+			<li><a href="#">我是列表项</a></li>
+			<li><a href="#">我是列表项</a></li>
+			<li><a href="#">我是列表项</a></li>
+		</ol>
+	</div>
+	<script type="text/javascript">
+		//获取div及ol节点
+		var oDiv=document.getElementById("scroll");
+		var oOli=document.getElementsByTagName("ol")[0];
+		//启动定时器
+		var timer=setInterval(fn,10);
+		//克隆ol
+		var nOli=oOli.cloneNode(true);
+		//添加到box中
+		oDiv.appendChild(nOli);
+		//定义fn功能
+		function fn(){
+			//判断scrollTop(容器顶部和内容的距离)时候和offsetHeight(ol列表的高度)相等
+			if(oDiv.scrollTop==oOli.offsetHeight){
+				oDiv.scrollTop=0;
+			}else{
+				oDiv.scrollTop=oDiv.scrollTop+2;	
+			}
+		}
+		//停止滚动
+		oDiv.onmouseover=function(){
+			clearInterval(timer);
+		}
+		//继续滚动
+		oDiv.onmouseout=function(){
+			timer=setInterval(fn,10);
+		}
+	</script>
+</body>
+</html>

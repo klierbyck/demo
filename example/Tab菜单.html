@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <style type="text/css">
+    	*{
+    		margin: 0;
+    		padding: 0;
+    		box-sizing: border-box;
+    	}
+		#box{
+			width: 450px;
+			height: 300px;
+			background: orange;
+			margin: 100px auto;
+		}
+		#list{
+			list-style: none;
+		}
+		#list li{
+			float: left;
+			width: 150px;
+			height: 50px;
+			font-size: 28px;
+			line-height: 50px;
+			text-align: center;
+			background: yellow;
+		}
+		#list li:first-of-type{
+			background: orange;
+		}
+		#list1,#list2,#list3{
+			width: 100%;
+			height: 250px;
+			padding-left: 100px;
+			padding-top: 100px;
+		}
+		#list2,#list3{
+			display: none;
+		}
+    </style>
+</head>
+<body>
+	<div id="box">
+		<ul id="list">
+			<li>标题一</li>
+			<li>标题二</li>
+			<li>标题三</li>
+		</ul>
+		<ol id="list1">
+			<li>内容1</li>
+			<li>内容1</li>
+			<li>内容1</li>
+		</ol>
+		<ol id="list2">
+			<li>内容2</li>
+			<li>内容2</li>
+			<li>内容2</li>
+		</ol>
+		<ol id="list3">
+			<li>内容3</li>
+			<li>内容3</li>
+			<li>内容3</li>
+		</ol>
+	</div>
+	<script type="text/javascript">
+		//获取li
+		var oLis=list.getElementsByTagName("li");
+		//获取ol
+		var oOlis=box.getElementsByTagName("ol");
+		for(var i=0;oLis.length;i++){
+			oLis[i].onmouseover=function(){
+				//改变对应标题颜色
+				for(var j=0;j<oLis.length;j++){
+					oLis[j].style.background="yellow";
+				}
+				this.style.background="orange";
+				//显示对应内容
+				for(var j=0;j<oOlis.length;j++){
+					oOlis[j].style.display="none";
+				}
+				if(this.innerHTML=="标题一"){
+					oOlis[0].style.display="block";
+				}else if(this.innerHTML=="标题二"){
+					oOlis[1].style.display="block";
+				}else{
+					oOlis[2].style.display="block";
+				}
+			}
+		}
+	</script>
+</body>
+</html>

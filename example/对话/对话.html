@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">  
+    <title>Title</title>
+    <style>
+
+        * { margin: 0; padding: 0;}
+        .ovfl { overflow: hidden}
+        .fr{ float: right}
+        .t-cent { text-align: center}
+        li { list-style: none}
+        .header { position: relative; top: -5px;}
+        .header span {  width: 40px; height: 12px; display: inline-block; background-color: #999; border-radius: 10px;}
+        .list-wrap { width: 300px; margin: 20px auto; height: 520px; padding: 10px; border: 1px solid #999;
+            box-shadow: 0 0 0 2px rgba(0,0,0,.2); border-radius: 10px; }
+        #list {background-color: #f9f9f9; border-radius: 10px 10px 0 0 ;border: 1px solid #f1f1f1; height: 400px; overflow: auto; padding: 15px;}
+        .cont { overflow: hidden}
+        img { width: 50px; height: 50px; border-radius: 5px;}
+        .user1 img{ float: left}
+        .user2 img { float: right}
+        .text { max-width: 160px; margin: 10px 15px; padding: 10px; line-height: 20px; border-radius: 5px;}
+        .user1 .text { float: left;  background-color: #fff;}
+        .user2 .text { float: right; text-align: right; background-color:#9f0;}
+
+
+        .box { padding: 20px 5px; border-top: 1px solid #f1f1f1; }
+        .user {float: left; width: 60px;line-height: 24px; position: relative; text-align: center;white-space: nowrap;
+            border-radius: 3px; padding:3px;border: 1px solid #eee;}
+        .name-list { position: absolute; padding:0 5px; left:-5px; text-align:left;  bottom: 35px; width: 100px; display: none;
+            background-color: #fff; border-radius: 6px;border: 1px solid #eee; cursor: pointer}
+        .name-list li { border-bottom: 1px solid #eee;line-height: 30px; padding:0 0 0 8px; }
+        .name-list li:nth-child(2) { border: none}
+        .name { overflow: hidden;cursor: pointer;
+            text-overflow: ellipsis;; }
+        #text { float: left; margin:0 10px; height: 20px; line-height: 20px; width: 140px; padding: 5px;
+            border-radius: 5px; border: 1px solid #eee; box-shadow: 0 0 1px rgba(0,0,0,.5)}
+        #send {float: left; width: 40px; border: none; outline: none; cursor: pointer; box-sizing: content-box; color: #fff; background-color: #35d;border-radius: 3px; text-align: center; line-height: 20px; padding: 5px;}
+    </style>
+</head>
+<body>
+
+<div class="list-wrap">
+    <div class="header t-cent">
+        <span> </span>
+    </div>
+
+    <ul id="list">
+        <li class="user1">
+            <div class="cont">
+                <img src="1.jpg">
+                <p  class="text">hi！史塔克</p>
+            </div>
+        </li>
+        <li class="user2">
+            <div class="cont">
+                <img src="2.jpg">
+                <p  class="text">hi！莉莉妮特</p>
+            </div>
+        </li> 
+    </ul>
+
+    <div class="box">
+        <div class="user">
+            <div class="name" id="name"  data-id="1">莉莉妮特</div>
+            <ul class="name-list" id="name-list">
+                <li data-id="1">莉莉妮特</li>
+                <li data-id="2">史塔克</li>
+            </ul>
+        </div>
+        <input type="text" id="text" value="">
+        <input type="button" type="button" id="send" value="发送">
+    </div>
+</div>
+<script type="text/javascript">
+    var oName=document.getElementById("name");
+    //为name所在div添加点击事件
+    oName.onclick=function(){
+        //获取ul节点并显示ul列表
+        var oNameList=document.getElementById("name-list");
+        oNameList.style.display="block"; 
+        //选择名字，更新name所在div，并隐藏ul
+        var oNameLis =  oNameList.getElementsByTagName("li");
+        for(var i=0;i<oNameLis.length;i++){
+            oNameLis[i].onclick=function(){
+                //获取点击的li的data-id值
+                var num=this.getAttribute("data-id");
+                //将name所在div的data-id值改变成选择的li的值
+                oName.setAttribute("data-id",num) ;
+                //将选择的名字写入div，然后隐藏ul
+                oName.innerHTML=this.innerHTML;
+                oNameList.style.display="none";
+            } 
+        }
+    }
+    //点击发送
+    send.onclick=function(){
+        //判断当前输入信息者是哪个人
+        if(oName.getAttribute("data-id")=="1"){
+            //克隆user1
+            var oUser1=document.getElementsByClassName("user1")[0];
+            var nUser1=oUser1.cloneNode(true);
+            //添加到list下
+            oUser1.parentNode.appendChild(nUser1);
+            //获取p标签改变其信息
+            var oP1=nUser1.getElementsByClassName("text")[0];
+            oP1.innerHTML=text.value;    
+        }else{
+            //克隆user2
+            var oUser2=document.getElementsByClassName("user2")[0];
+            var nUser2=oUser2.cloneNode(true);
+            //添加到list下
+            oUser2.parentNode.appendChild(nUser2);
+            //获取p标签改变其信息
+            var oP2=nUser2.getElementsByClassName("text")[0];
+            oP2.innerHTML=text.value;
+        }
+        text.value="";
+    }
+    
+</script>
+</body>
+</html>

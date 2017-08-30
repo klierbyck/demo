@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <style type="text/css">
+    	*{
+    		margin: 0;
+    		padding: 0;
+    		box-sizing: border-box;
+    	}
+    	#box1{
+    		width: 403px;
+    		height: 110px;
+    		margin: 50px auto;
+    		position: relative;
+    	}
+    	#box1 ul{
+			position: absolute;
+			right: 0;
+			bottom: 0;
+    	}
+    	#box1 li{
+    		list-style: none;
+    		float: left;
+    		width: 25px;
+    		height: 25px;
+    		border-radius: 50%;
+    		text-align: center;
+    		line-height: 25px;
+    		font-size: 16px;
+    		color: #fff;
+    		background-color: blue;
+    		margin-right: 10px;
+    	}
+    	#box1 li:first-of-type{
+    		background-color: red;
+    	}
+    </style>
+</head>
+<body>
+	<div id="box1">
+		<img src="pic1.jpg">
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+		//封装图片到数组
+		var arr=["pic1.jpg","pic2.jpg","pic3.jpg","pic4.jpg"];
+		//启动定时器
+		var timer = setInterval(fn,1000);
+		//定义图片切换变量
+		var a=1;
+		//获取图片节点
+		var oImg=document.getElementsByTagName("img")[0];
+		//获取li节点
+		var oLis=document.getElementsByTagName("li");
+		//定义fn功能
+		function fn(){
+			//切换图片
+			oImg.src=arr[a];
+			//遍历li的背景色全部为蓝色
+			for(var i=0;i<oLis.length;i++){
+				oLis[i].style.backgroundColor="blue";
+			}
+			//切换到那张图片改变对应li的背景颜色
+			oLis[a].style.backgroundColor="red";
+			//修正a的值
+			a++;
+			if(a>3){
+				a=0;
+			}
+		}
+		
+		for(var i=0;i<oLis.length;i++){
+			var index;
+			oLis[i].onmouseover=function(){
+				for(var j=0;j<oLis.length;j++){
+					oLis[j].style.backgroundColor="blue";
+				}
+				this.style.backgroundColor="red";
+				//获取li中的数字从而得到下标从而得到需要显示的图片
+				index=parseInt(this.innerHTML)-1;
+				oImg.src=arr[index];
+				//停止定时器
+				clearInterval(timer);		
+			}
+			oLis[i].onmouseout=function(){
+				//启动定时器
+				timer=setInterval(fn,1000);
+				if(index==3){
+					a=0;
+				}else{
+					a=index+1;
+				}
+			}
+		}
+		
+	</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <style type="text/css">
+		#box{
+			width: 1000px;
+			height: 100px;
+			border: 1px solid red;
+			margin: 100px auto 0;
+		}
+		#bar{
+			height: 100%;
+			width: 0px;
+			text-align: right;
+			line-height: 100px;
+			font-size: 48px;
+		}
+		#btn{
+			display: block;
+			width: 80px;
+			height: 40px;
+			margin: 0 auto;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div id="bar"></div>
+	</div>
+	<button id="btn">开始加载</button>
+	<script type="text/javascript">
+		var timer;
+		//启动定时器
+		btn.onclick=function(){
+			clearInterval(timer);
+			timer=setInterval(fn,100);
+		}
+		
+		//动作条移动函数
+		function fn(){
+			bar.style.backgroundColor="blue";
+			bar.style.width=bar.offsetWidth+10+"px";
+			//显示百分比
+			bar.innerHTML=String(parseInt(bar.offsetWidth/1000*100))+"%";
+			//动作条长度超出盒子时停止
+			if(bar.offsetWidth>=1000){
+				clearInterval(timer);
+			}
+		}
+	</script>
+</body>
+</html>

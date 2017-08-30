@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>用户注册验证</title>
+    <style type="text/css">
+    	body{
+    		font-size: 16px;
+    	}
+    	td:nth-of-type(3){
+    		color: #ff0000;
+    		padding-left: 10px;
+    	}
+    </style>
+</head>
+<body>
+	<h1>用户注册信息验证</h1>
+	<form action="demo.html" id="form1">
+		<table>
+			<tr>
+				<td>用户名：</td>
+				<td><input type="text" id="user"></td>
+				<td id="userInfo"></td>
+			</tr>
+			<tr>
+				<td>密码：</td>
+				<td><input type="password" id="psd"></td>
+				<td id="psdInfo"></td>
+			</tr>
+			<tr>
+				<td>确认密码：</td>
+				<td><input type="password" id="psdt"></td>
+				<td id="psdtInfo"></td>
+			</tr>
+			<tr>
+				<td>Email：</td>
+				<td><input type="text" id="email"></td>
+				<td id="emailInfo"></td>
+			</tr>
+			<tr>
+				<td>年龄：</td>
+				<td><input type="text" id="age"></td>
+				<td id="ageInfo"></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="提交"></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</table>
+	</form>
+	<script type="text/javascript">
+		//获取表单、用户名、密码、确认密码、邮件、年龄的节点
+		var user=document.getElementById("user");
+		var userInfo=document.getElementById("userInfo");
+		var psd=document.getElementById("psd");
+		var psdInfo=document.getElementById("psdInfo");
+		var psdt=document.getElementById("psdt");
+		var psdtInfo=document.getElementById("psdtInfo");
+		var email=document.getElementById("email");
+		var emailInfo=document.getElementById("emailInfo");
+		var age=document.getElementById("age");
+		var ageInfo=document.getElementById("ageInfo");
+		//用户名获取焦点
+		user.onfocus=function(){
+			user1();
+		}
+		//用户名失去焦点
+		user.onblur=function(){
+			user2();
+		}
+		//用户名获取焦点操作
+		function user1(){
+			if(user.value==""){
+				userInfo.innerHTML="字母、数字、下划线构成，6-16位，不能以数字开头";
+				return ;
+			}else{
+				var regex=/^[A-Za-z_]\w{5,15}$/;
+				if(regex.test(user.value)){
+					userInfo.innerHTML="√";
+					return ;
+				}else{
+					user.value="";
+					userInfo.innerHTML="字母、数字、下划线构成，6-16位，不能以数字开头";
+					return ;
+				}
+			}
+		}
+		//用户名失去焦点操作
+		function user2(){
+			if(user.value==""){
+				userInfo.innerHTML="用户名不能为空";
+				return false;
+			}else{
+				var regex=/^[A-Za-z_]\w{5,15}$/;
+				if(regex.test(user.value)){
+					userInfo.innerHTML="√";
+					return true;
+				}else{
+					userInfo.innerHTML="×";
+					return false;
+				}
+			}
+		}
+		//密码获取焦点
+		psd.onfocus=function(){
+			psd1();
+		}
+		//密码失去焦点
+		psd.onblur=function(){
+			psd2();
+		}
+		//密码获取焦点操作
+		function psd1(){
+			if(psd.value==""){
+				psdInfo.innerHTML="字母、数字、下划线构成及以下符号(@#$%^&*)，6-20位";
+				return ;
+			}else{
+				var regex=/^[\w@#$%^&*]{6,20}$/;
+				if(regex.test(psd.value)){
+					psdInfo.innerHTML="√";
+					return ;
+				}else{
+					psd.value="";
+					psdInfo.innerHTML="字母、数字、下划线构成及以下符号(@#$%^&*)，6-20位";
+					return ;
+				}
+			}
+		}
+		//密码失去焦点操作
+		function psd2(){
+			if(psd.value==""){
+				psdInfo.innerHTML="密码不能为空";
+				return false;
+			}else{
+				var regex=/^[\w@#$%^&*]{6,20}$/;
+				if(regex.test(psd.value)){
+					psdInfo.innerHTML="√";
+					return true;
+				}else{
+					psdInfo.innerHTML="×";
+					return false;
+				}
+			}
+		}
+		//确认密码获取焦点
+		psdt.onfocus=function(){
+			psdt1();
+		}
+		//确认密码失去焦点
+		psdt.onblur=function(){
+			psdt2();
+		}
+		//确认密码获取焦点操作
+		function psdt1(){
+			if(psdt.value==""){
+				psdtInfo.innerHTML="请再次输入密码";
+				return ;
+			}else{
+				var regex=/^[\w@#$%^&*]{6,20}$/;
+				if(regex.test(psdt.value)){
+					if(psdt.value==psd.value){
+						psdtInfo.innerHTML="√";
+						return ;
+					}else{
+						psdt.value="";
+						psdtInfo.innerHTML="请再次输入密码";
+						return ;
+					}
+				}else{
+					psdt.value="";
+					psdtInfo.innerHTML="请再次输入密码";
+					return ;
+				}
+				
+			}
+		}
+		//确认密码失去焦点操作
+		function psdt2(){
+			if(psdt.value==""){
+				psdtInfo.innerHTML="确认密码不能为空";
+				return false;
+			}else{
+				var regex=/^[\w@#$%^&*]{6,20}$/;
+				if(regex.test(psdt.value)){
+					if(psdt.value==psd.value){
+					psdtInfo.innerHTML="√";
+					return true;
+					}else{
+						psdtInfo.innerHTML="两次密码不一样，请重新输入";
+						return false;
+					}
+				}else{
+					psdtInfo.innerHTML="两次密码不一样，请重新输入";
+					return false;
+				}
+			}
+		}
+		//邮件获取焦点
+		email.onfocus=function(){
+			email1();
+		}
+		//邮件失去焦点
+		email.onblur=function(){
+			email2();
+		}
+		//邮件获取焦点操作
+		function email1(){
+			if(email.value==""){
+				emailInfo.innerHTML="格式为xxxxx@xxxxxx.com/cn/net/com.cn/edu/gov";
+				return ;
+			}else{
+				var regex=/^\w+@\w+\.(com|cn|net|com\.cn|edu|gov)$/;
+				if(regex.test(email.value)){
+					emailInfo.innerHTML="√";
+					return ;
+				}else{
+					email.value="";
+					emailInfo.innerHTML="格式为xxxxx@xxxxxx.com/cn/net/com.cn/edu/gov";
+					return ;
+				}
+			}
+		}
+		//邮件失去焦点操作
+		function email2(){
+			if(email.value==""){
+				emailInfo.innerHTML="电子邮件不能为空";
+				return false;
+			}else{
+				var regex=/^\w+@\w+\.(com|cn|net|com\.cn|edu|gov)$/;
+				if(regex.test(email.value)){
+					emailInfo.innerHTML="√";
+					return true;
+				}else{
+					emailInfo.innerHTML="×";
+					return false;
+				}
+			}
+		}
+		//年龄获取焦点
+		age.onfocus=function(){
+			age1();
+		}
+		//年龄失去焦点
+		age.onblur=function(){
+			age2();
+		}
+		//年龄获取焦点操作
+		function age1(){
+			if(age.value==""){
+				ageInfo.innerHTML="年龄只能在18-40间";
+				return ;
+			}else{
+				var regex=/^1[89]$|^[23]\d$|^40$/;
+				if(regex.test(age.value)){
+					ageInfo.innerHTML="√";
+					return ;
+				}else{
+					age.value="";
+					ageInfo.innerHTML="年龄只能在18-40间";
+					return ;
+				}
+			}
+		}
+		//年龄失去焦点操作
+		function age2(){
+			if(age.value==""){
+				ageInfo.innerHTML="年龄不能为空";
+				return false;
+			}else{
+				var regex=/^1[89]$|^[23]\d$|^40$/;
+				if(regex.test(age.value)){
+					ageInfo.innerHTML="√";
+					return true;
+				}else{
+					ageInfo.innerHTML="×";
+					return false;
+				}
+			}
+		}
+		//表单提交
+		form1.onsubmit=function(){
+			return fn();
+		}
+		//表单提交前验证操作
+		function fn(){
+			var res1=user2();
+			var res2=psd2();
+			var res3=psdt2();
+			var res4=email2();
+			var res5=age2();
+			return res1&&res2&&res3&&res4&&res5;
+		}
+	</script>
+</body>
+</html>

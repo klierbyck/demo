@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+	<input type="checkbox" name="fav">吃
+	<input type="checkbox" name="fav">喝
+	<input type="checkbox" name="fav">玩
+	<input type="checkbox" name="fav">睡
+	<input id="ck5" type="checkbox">全选
+	<script type="text/javascript">
+		//通过name获取节点
+		var oInp=document.getElementsByName("fav");
+		//全部选中操作
+		ck5.onclick=function(){
+			//点击全选按钮后判断checked的值
+			if(ck5.checked){
+				//遍历爱好选择按钮全部为选中状态
+				for(var i=0;i<oInp.length;i++){
+					oInp[i].checked=true;
+				}	
+			}else{
+				//遍历爱好选择按钮全部为未选中状态
+				for(var i=0;i<oInp.length;i++){
+					oInp[i].checked=false;
+				}
+			}	
+		}
+		//点击爱好时，调用fn();
+		for(var i=0;i<oInp.length;i++){
+			oInp[i].onclick=function(){
+				fn();
+			}
+		}
+		function fn(){
+			var flag=0;
+			for(var i=0;i<oInp.length;i++){
+				if(oInp[i].checked){
+					
+				}else{
+					//如果有未选中的，标志位置1
+					flag=1;
+				}
+			}
+			//如果标志位未改变，全选按钮为选中状态，取消全选按钮则为未选中状态
+			if(flag==0){
+				ck5.checked=true;
+			}else{
+				//如果标志位改变，则统计其改变次数，若与爱好的个数相等（爱好全部未选中）
+				ck5.checked=false;
+			}
+		}	
+	</script>
+</body>
+</html>

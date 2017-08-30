@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <style type="text/css">
+    	*{
+    		margin: 0;
+    		padding: 0;
+    		box-sizing: border-box;
+    	}
+    	.otb{
+			/* border-collapse: collapse;	 */
+			border-spacing: 0;
+			width: 400px;
+			height: 300px;
+			border: 1px solid red;
+		}
+		table{
+			border:1px solid hotpink;
+			border-collapse: collapse;
+			margin: 10px auto;
+		}
+		td,th{
+			width: 50px;
+			height: 50px;
+			border:1px solid hotpink;
+		}
+    </style>
+</head>
+<body>
+	<input type="text" id="inp1" placeholder="行">
+	<input type="text" id="inp2" placeholder="列">
+	<button id="btn1">创建表格</button>
+	<script type="text/javascript">
+		btn1.onclick=function(){
+			//创建table
+			var oTable=document.createElement("table");
+			oTable.className="otb";
+			//添加table到body
+			document.body.appendChild(oTable);
+			//创建tr
+			for(var i=1;i<=inp1.value;i++){
+				var oTr=document.createElement("tr");
+				//添加tr到table中
+				oTable.appendChild(oTr);
+				//创建td
+				for(var j=1;j<=inp2.value;j++){
+					var oTd=document.createElement("td");
+					oTd.style.border="2px solid";
+					oTd.style.borderColor=fn();
+					//添加td到tr中
+					oTr.appendChild(oTd);
+				}
+			}
+		}
+		//产生随机颜色
+		function fn(){
+			var str="0123456789abcdef";
+			var nstr="#";
+			for(var k=0;k<6;k++){
+				var index=parseInt(Math.random()*str.length);
+				nstr+=str[index];
+			}
+			return nstr;
+		}
+	</script>
+</body>
+</html>

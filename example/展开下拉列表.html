@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <style type="text/css">
+    	*{
+			margin: 0px;
+			padding: 0px;
+			box-sizing: border-box;
+		}
+		#menu{
+			width: 300px;
+			border:1px solid orange;
+		}
+		#menu h3{
+			background-color: orange;
+		}
+		#menu dt{
+			height: 40px;
+			line-height: 40px;
+			border-bottom: 1px solid orange;
+		}
+		#menu dd{
+			width: 100%;
+			height: 40px;
+			line-height: 40px;
+			border-bottom: 1px solid orange;
+
+		}
+    </style>
+</head>
+<body>
+	<div id="menu">
+		<dl id="dl1">
+			<dt><h3>电子产品</h3></dt>
+			<dd>手机</dd>
+			<dd>电脑</dd>
+			<dd>pad</dd>
+		</dl>
+		<dl>
+			<dt><h3>电子产品</h3></dt>
+			<dd>手机</dd>
+			<dd>电脑</dd>
+			<dd>pad</dd>
+		</dl>
+		<dl>
+			<dt><h3>电子产品</h3></dt>
+			<dd>手机</dd>
+			<dd>电脑</dd>
+			<dd>pad</dd>
+		</dl>
+	</div>
+	<script type="text/javascript">
+		//获取dt
+		var oDts=menu.getElementsByTagName("dt");
+		//遍历dt调用点击
+		for(var i=0;i<oDts.length;i++){
+			oDts[i].onclick=function(){
+				//使用dt的父节点，然后通过标签名获取dl下所有的dd
+				var oDds=this.parentNode.getElementsByTagName("dd");
+				//判断其中任意一个dd是否为隐藏状态
+				if(getStyle(oDds[0],"display")=="none"){
+					//遍历dd，并设置为显示
+					for(var j=0;j<oDds.length;j++){
+						oDds[j].style.display="block";
+					}
+				}else{
+					for(var j=0;j<oDds.length;j++){
+						oDds[j].style.display="none";
+					}	
+				}
+			}
+		}
+		function getStyle(obj,attr){
+			if(obj.currentStyle){
+				return obj.currentStyle[attr];
+			}else{
+				return window.getComputedStyle(obj,null)[attr];
+			}
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>表单验证</title>
+    <style type="text/css">
+		body{
+    		font-size: 16px;
+    	}
+    	#btn{
+    		width: 80px;
+    		height: 30px;
+    	}
+    	#userinfo,#psdinfo,#verinfo{
+    		color: red;
+    		font-style: italic;
+    		padding-left: 12px;
+    	}
+    	#verinfo{
+    		padding: 0;
+    	}
+    	#ver1{
+    		display: inline-block;
+    		font-style: italic;
+    		padding: 0;
+    		width: 80px;
+    	}
+    </style>
+</head>
+<body>
+	<h1>表单验证</h1>
+	<form action="demo.html" id="form1">
+		<table>
+			<tr>
+				<td>用户名：</td>
+				<td><input type="text" id="user"></td>
+				<td id="userinfo"></td>
+			</tr>
+			<tr>
+				<td>密码：</td>
+				<td><input type="password" id="psd"></td>
+				<td id="psdinfo"></td>
+			</tr>
+			<tr>
+				<td>验证码：</td>
+				<td><input type="text" id="ver"></td>
+				<td id="yzm"><span id="ver1"></span><span id="verinfo"></span></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="提交"></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</table>
+	</form>
+	<script type="text/javascript">
+		//获取节点
+		var form1=document.getElementById("form1");
+		var user=document.getElementById("user");
+		var psd=document.getElementById("psd");
+		var userinfo=document.getElementById("userinfo");
+		var psdinfo=document.getElementById("psdinfo");
+		var ver=document.getElementById("ver");
+		var ver1=document.getElementById("ver1");
+		var verinfo=document.getElementById("verinfo");
+		
+		//用户名获取焦点验证
+		user.onfocus=function(){
+			user1();
+		}
+		//用户名失去焦点验证
+		user.onblur = function(){
+			user2();
+		}
+		//用户名获取焦点操作
+		function user1(){
+			if(user.value==""){
+			userinfo.innerHTML="只能是数字、字母、下划线，不能以数字开头，至少4位最多10位";	
+			}else{
+				//判断用户名是否合法
+				var regex=/^[a-zA-Z_]\w{3,9}$/;
+				if(regex.test(user.value)){
+					userinfo.innerHTML="√";
+					return ;
+				}else{
+					user.value="";
+					userinfo.innerHTML="只能是数字、字母、下划线，不能以数字开头，至少4位最多10位";
+					return ;
+				}
+			}
+		}
+		//用户名失去焦点操作
+		function user2(){
+			//判断用户名是否为空
+			if(user.value==""){
+				userinfo.innerHTML="用户名不能为空";
+				return false;
+			}
+			//判断用户名是否合法
+			var regex=/^[a-zA-Z_]\w{3,9}$/;
+			if(regex.test(user.value)){
+				userinfo.innerHTML="√";
+				return true;
+			}else{
+				userinfo.innerHTML="×";
+				return false;
+			}
+			
+		}
+		function user3(){
+
+		}
+		//密码获取焦点验证
+		psd.onfocus = function(){
+			psd1();
+		}
+		//密码失去焦点验证
+		psd.onblur = function(){
+			psd2();
+		}
+		//密码获取焦点操作
+		function psd1(){
+			if(psd.value==""){
+				psdinfo.innerHTML="只能是数字、字母及以下字符(_!@#$%^&*),6-15位";
+				return ;	
+			}else{
+				var regex=/^[a-zA-Z_!@#$%^&*]{6,15}$/;
+				if(regex.test(psd.value)){
+					psdinfo.innerHTML="√";
+					return ;
+				}else{
+					psd.value="";
+					psdinfo.innerHTML="只能是数字、字母及以下字符(_!@#$%^&*),6-15位";
+					return ;
+				}
+			}
+		}
+		//密码失去焦点操作
+		function psd2(){
+			//判断密码是否为空
+			if(psd.value==""){
+				psdinfo.innerHTML="密码不能为空";
+				return false;
+			}
+			//判断密码是否合法
+			var regex=/^[a-zA-Z_!@#$%^&*]{6,15}$/;
+			if(regex.test(psd.value)){
+				psdinfo.innerHTML="√";
+				return true;
+			}else{
+				psdinfo.innerHTML="×";
+				return false;
+			}	
+		}
+		//点击改变验证码
+		ver1.onclick = function(){
+			verity();
+		}
+		//验证码框获取焦点验证
+		ver.onfocus = function(){
+			verinfo.innerHTML="";
+			if(ver.value!=""){
+				if(ver.value==ver1.innerHTML){
+					return ;
+				}else{
+					ver.value="";
+					verity();
+				}
+				
+			}
+		}
+		//验证码框失去焦点验证
+		ver.onblur = function(){
+			verity1();
+		}
+		//验证码失去焦点操作
+		function verity1(){
+			if(ver.value==""){
+				verinfo.innerHTML = "验证码不能为空";
+				return false;
+			}else{
+				if(ver.value==ver1.innerHTML){
+					return true;
+				}else{
+					verinfo.innerHTML = "验证码不正确";
+					return false;
+				}
+			}	
+		}
+		//生成验证码并在所有元素加载完成后显示
+		window.onload = verity;
+		function verity(){
+			var str="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghigklmnopqrstuvwxyz0123456789";
+			var nstr="";
+			for(var i=1;i<=5;i++){
+				var index=parseInt(Math.random()*str.length);
+				nstr+=str[index];
+			}
+			ver1.innerHTML=nstr;
+		}
+		//表单提交事件验证
+		form1.onsubmit = function(){
+			return fn();
+		}
+		//提交验证
+		function fn(){
+			var res1=user2();
+			var res2=psd2();
+			var res3=verity1();
+			return res1&&res2&&res3;
+		}
+	</script>
+</body>
+</html>

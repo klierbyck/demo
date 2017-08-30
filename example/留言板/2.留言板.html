@@ -1,0 +1,195 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<title></title>
+	<style type="text/css">
+		*{margin: 0;padding: 0;font-size: 12px;}
+		a{text-decoration: none;display: none;}
+		.showMsg{
+			width: 400px;
+			border: 1px solid #000;
+			margin: 20px auto;
+			padding: 10px;
+		}
+
+		.list{
+			list-style: none;
+
+		}
+
+		.msg{
+			border-bottom: 1px dashed #000;
+			padding: 10px;
+			overflow: hidden;
+		}
+
+		.msg:hover a{
+			display: block;
+			color: red;
+		}
+
+		.pic{
+			width: 50px;
+			height: 50px;
+			float: left;
+			margin-right: 10px;
+		}
+		.msgCont{
+			width: 200px;
+			display: block;
+			float: left;
+			margin-right: 10px;
+
+
+		}
+
+		.date{
+			width: 100px;
+			height: 50px;
+			float: left;
+
+		}
+
+		.btn{
+			width: 80px;
+			height: 40px;
+			padding: 2px;
+			margin: 5px;
+			margin-left: 250px;
+
+		}
+
+		.msg_blck{
+			width: 100%;
+			height: 100%;
+			/*opacity: 0.5;继承*/
+			background: rgba(0,0,0,0.5);
+			position: fixed;
+			top: 0px;
+			left: 0px;
+			display: none;
+		}
+
+		.msg_cont{
+			width: 500px;
+			height: 400px;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			margin-top: -200px;
+			margin-left: -250px;
+			background: #fff;
+			text-align: center;
+		}
+
+		.closeBtn{
+			display: block;
+			margin-left: 400px;
+			margin-top: 10px;
+			font-size: 30px;
+			color: #aaa;
+		}
+
+		.tarea{
+			width: 400px;
+			height: 300px;
+			border: 1px solid #aaa;
+			margin: 5px auto;
+			display: block;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="showMsg">
+		<ul class="list">
+			<li class="msg">
+				<img class="pic" src="1a.jpg"/>
+				<p class="msgCont">傅园慧的"洪荒之力"席卷全世界！</p>
+				<div class="date">
+					<p class="day">2016-06-20</p>
+					<a href="#" class="del">删除</a>
+				</div>
+			</li>
+			<!-- <li class="msg">
+				<img class="pic" src="img/1a.jpg"/>
+				<p class="msgCont">王宝强马蓉离婚的内幕！</p>
+				<div class="date">
+					<p>2016-06-20</p>
+					<a href="#">删除</a>
+				</div>
+			</li> -->
+		</ul>
+		<button class="btn" id="btn">发表留言</button>
+	</div>
+
+	<!-- 弹出留言框 -->
+	<div class="msg_blck">
+		<div class="msg_cont">
+			<a class="closeBtn" href="#">X</a>
+			<textarea rows="20" cols="30" class="tarea" id="tarea"></textarea>
+			<button class="confirmBtn" id="confirmBtn">确认发布</button>
+		</div>
+
+	</div>
+<script type="text/javascript">
+	//获取留言框节点
+	var oMsg=document.getElementsByClassName("msg_blck")[0];
+	//获取X按钮节点
+	var oCloseBtn=document.getElementsByClassName("closeBtn")[0];
+	//获取ul节点
+	var oUl=document.getElementsByClassName("list")[0];
+	
+	btn.onclick=function(){
+		//点击发表留言时弹出留言框
+		oMsg.style.display="block";
+	}
+	oCloseBtn.onclick=function(){
+		//关掉留言框
+		oMsg.style.display="none";
+	}
+	confirmBtn.onclick=function(){
+		//关掉留言框
+		oMsg.style.display="none";
+		
+		//获取第一个li节点
+		var oLi=document.getElementsByClassName("msg")[0];
+		//克隆节点及内容
+		var nli=oLi.cloneNode(true);
+		//添加节点到ul中
+		oUl.appendChild(nli);
+		//获取li中的msgCont
+		var omsgCont=nli.getElementsByClassName("msgCont")[0];
+		omsgCont.innerHTML=tarea.value;
+		//清除文本框内容
+		tarea.value="";
+		//产生随机图片
+		var arr=["1a.jpg","2a.jpg","3a.jpg","4a.jpg","5a.jpg"];
+		var index=parseInt(Math.random()*arr.length);
+		//获取图片节点
+		var oImg=nli.getElementsByClassName("pic")[0];
+		//添加随机图片
+		oImg.src=arr[index];
+		//获取日期节点
+		//var oDay=nli.getElementsByClassName("day")[0];
+
+		//获取删除按钮节点
+		var oDelBtn=nli.getElementsByClassName("del")[0];
+		//创建点击删除功能
+		oDelBtn.onclick=fn;	
+	}
+
+	//获取删除按钮节点
+	var oDel=document.getElementsByClassName("del")[0];
+	//点击删除移除li
+	oDel.onclick=fn;
+	function fn(){
+		//获取要删除的li
+		var delLi=this.parentNode.parentNode;
+		//移除该li
+		oUl.removeChild(delLi);	
+	}
+</script>
+</body>
+</html>

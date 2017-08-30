@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <style type="text/css">
+    	*{
+    		margin: 0;
+    		padding: 0;
+    		box-sizing: border-box;
+    	}
+    	#box{
+    		width: 300px;
+    		height: 500px;
+    		border: 1px solid black;
+    		margin: 50px auto;
+    		font-size: 32px;
+    	}
+    	#month{
+    		height: 200px;
+    		background: orange;
+    		line-height: 200px;
+    		text-align: center;
+    		font-size: 120px;
+    	}
+		#year,#xingq,#timer{
+			height: 100px;
+			line-height: 100px;
+			text-align: center;
+		}
+    </style>
+</head>
+<body>
+	<div id="box">
+		<div id="year"></div>
+		<div id="month"></div>
+		<div id="xingq"></div>
+		<div id="timer"><span id="sp1"></span>时<span id="sp2"></span>分<span id="sp3"></span>秒</div>
+	</div>
+	<script type="text/javascript">
+		fn();
+		setInterval(fn,1000);
+		function fn(){
+			var d=new Date();
+			year.innerHTML=d.getFullYear()+"年"+(d.getMonth()+1)+"月";
+			month.innerHTML=d.getDate();
+			var week=d.getDay();
+			switch(week){
+				case 1:
+					week="星期一";
+					break;
+				case 2:
+					week="星期二";
+					break;
+				case 3:
+					week="星期三";
+					break;
+				case 4:
+					week="星期四";
+					break;
+				case 5:
+					week="星期五";
+					break;
+				case 6:
+					week="星期六";
+					break;
+				case 0:
+					week="星期日";
+					break;
+			}
+			xingq.innerHTML=week;
+			var hour=d.getHours();
+			var minute=d.getMinutes();
+			var second=d.getSeconds();
+			if(hour<10){
+				hour="0"+hour;
+			}
+			if(minute<10){
+				minute="0"+minute;
+			}
+			if(second<10){
+				second="0"+second;
+			}
+			sp1.innerHTML=hour;
+			sp2.innerHTML=minute;
+			sp3.innerHTML=second;
+		}	
+	</script>
+</body>
+</html>

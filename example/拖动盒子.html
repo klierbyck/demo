@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <style type="text/css">
+    	div{
+    		width: 200px;
+    		height: 200px;
+    		background-color: orange;
+    		position: fixed;
+    	}
+    </style>
+</head>
+<body>
+	<div></div>
+	<script type="text/javascript">
+		//获取div节点
+		var oDiv=document.getElementsByTagName("div")[0];
+		//鼠标按下操作
+		oDiv.onmousedown=function(eve){
+			//获取even对象
+			var e=eve||window.event;
+			//鼠标距离盒子的距离
+			var x=e.offsetX;
+			var y=e.offsetY;
+			//鼠标移动操作
+			oDiv.onmousemove=function(eve){
+				//获取event对象
+				var e=eve||window.event;
+				//获取鼠标距离屏幕的距离并移动盒子
+				oDiv.style.left=e.clientX-x + "px";
+				oDiv.style.top=e.clientY-y + "px";
+				
+			}
+		}
+		//鼠标弹起操作
+		oDiv.onmouseup=function(){
+			oDiv.onmousemove=null;
+		}
+	</script>
+</body>
+</html>

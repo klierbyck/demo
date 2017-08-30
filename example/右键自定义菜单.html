@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <style type="text/css">
+    	*{
+    		margin: 0;
+    		padding: 0;
+    		box-sizing: border-box;
+    	}
+    	div{
+    		width: 100px;
+    		background-color: #ccc;
+    		font-size: 16px;
+    		display: none;
+    		position: fixed;
+    	}
+    	ul{
+    		list-style: none;
+    		padding-left: 20px;
+			background-color: #ddd;
+    	}
+    	li{
+    		line-height: 30px;
+    	}
+    </style>
+</head>
+<body>
+	<div>
+		<ul>
+			<li>复制</li>
+			<li>剪切</li>
+			<li>粘贴</li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+		//获取div节点
+		var oDiv=document.getElementsByTagName("div")[0];
+		//获取li节点
+		var oLis=document.getElementsByTagName("li");
+		document.oncontextmenu=function(eve){
+			//显示div
+			oDiv.style.display="block";
+			//获取event对象
+			var e=eve||window.event;
+			//取消默认行为
+			e.preventDefault();
+			//h获取距离浏览器窗口的值
+			var left=e.clientX;
+			var top=e.clientY;
+			//设置div显示位置
+			oDiv.style.left=left+"px";
+			oDiv.style.top=top+"px";
+			//鼠标移到里上改变颜色，移除变为原来颜色
+			for(var i=0;i<oLis.length;i++){
+				oLis[i].onmouseover=function(){
+					this.style.backgroundColor="#ccc";
+				}
+				oLis[i].onmouseout=function(){
+					this.style.backgroundColor="#ddd";
+				}
+			}
+		}
+		//点击左键隐藏div
+		document.onclick=function(){
+			oDiv.style.display="none";
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>第四题</title>
+    <style type="text/css">
+    	table{
+    		border-collapse: collapse;
+    	}
+    	td,th{
+    		width: 150px;
+    		height: 30px;
+    		line-height: 30px;
+    		text-align: center;
+    		border: 1px solid;
+    	}
+    	#clonet{
+    		display: none;
+    	}
+    </style>
+</head>
+<body>
+	<table id="tab">
+		<thead>
+			<th>姓名</th>
+			<th>年龄</th>
+			<th>性别</th>
+			<th>操作</th>
+		</thead>
+		<tr id="clonet">
+			<td>张三</td>
+			<td>20</td>
+			<td>男</td>
+			<td><input type="button" value="删除" class="del"></td>
+		</tr>
+	</table>
+	<input type="text" placeholder="姓名" id="nam">
+	<input type="text" placeholder="年龄" id="age">
+	<input type="text" placeholder="性别" id="sex">
+	<input type="button" value="克隆添加" id="btn1">
+	<input type="button" value="按年龄排序" id="btn2">
+	<script type="text/javascript">
+		btn1.onclick=function(){
+			var nam1=nam.value;
+			var age1=age.value;
+			var sex1=sex.value;
+			var arr=[nam1,age1,sex1];
+			//克隆tr及内容
+			var oTr=clonet.cloneNode(true);
+			//移除id
+			oTr.removeAttribute("id");
+			//获取tr的父节点tbody
+			var oTbody=tab.getElementsByTagName("tbody")[0];
+			//添加tr到tbody中
+			oTbody.appendChild(oTr);
+			//获取tr中的td
+			var oTds=oTr.getElementsByTagName("td");
+			//遍历td为前三个td赋值
+			for(var i=0;i<oTds.length-1;i++){
+				oTds[i].innerHTML=arr[i];
+			}
+			//获取最后一个td中的button
+			var nBtn=oTds[3].getElementsByTagName("input")[0];
+			//button添加点击事件
+			nBtn.onclick=fn1;
+		}
+		//点删除按钮删除按钮所在的行
+		var dBtn=clonet.getElementsByTagName("input")[0];
+		dBtn.onclick=fn1;
+		//删除tr功能
+		function fn1(){
+			var oTbody=tab.getElementsByTagName("tbody")[0];
+			var oTr=this.parentNode.parentNode;
+			oTbody.removeChild(oTr);	
+		}
+		btn2.onclick=function(){
+			//获取tbody
+			var oTbody=tab.getElementsByTagName("tbody")[0];
+			//获取tr
+			var oTrs=oTbody.getElementsByTagName("tr");
+			var str="";
+			//遍历tr获取年龄td
+			for(var i=0;i<oTrs.length;i++){
+				//获取当前tr下td
+				var oTds=oTrs[i].getElementsByTagName("td");
+				var str=str+oTds[1].innerHTML+" ";
+
+			}
+			//将字符串转换为数组
+			var arr=str.split(" ");
+			//删除数组中多余的空格
+			arr.pop();
+			console.log(arr);
+			
+
+		}
+	</script>
+</body>
+</html>

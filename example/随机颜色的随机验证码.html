@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+	<span></span>
+	<span></span>
+	<span></span>
+	<span></span><br/>
+	<a id="change" href="javaScript:void(0)">换一组</a>
+	<script type="text/javascript">
+		window.onload=fn;
+		//点击改变验证码
+		change.onclick=function(){
+			fn();
+		}
+		//产生验证码功能
+		function fn(){
+		//通过标签名获取存放随机字符的节点
+		var oSps=document.getElementsByTagName("span");
+		//定义字符串内容
+		var str="0123456789abcdefghijklmnopqrstuvwxyz";
+		var nstr="";
+		//产生四个字符并组成字符串
+		for(var i=0;i<4;i++){
+			//产生字符串随机下标
+			var index=parseInt(Math.random()*str.length);
+			//产生随机颜色
+			var str1="0123456789abcdef";
+			var nstr1="#";
+			for(var j=0;j<6;j++){
+				var index1=parseInt(Math.random()*str1.length);
+				nstr1+=str1[index1];
+			}
+			//将随机字符写到span标签内
+			oSps[i].innerHTML=str[index];
+			//改变标签内文字的颜色
+			oSps[i].style.color=nstr1;
+			}
+		}
+	</script>
+</body>
+</html>

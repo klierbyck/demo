@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>淘宝搜索框</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#box{
+			width: 500px;
+			height: 50px;
+			margin: 100px auto;
+			position: relative;
+		}
+		#txt{
+			width: 500px;
+			height: 50px;
+			line-height: 50px;
+			outline-style: none;
+			font-size: 20px;
+		}
+		#meg{
+			position: absolute;
+			top: 12px;
+			left: 20px;
+			cursor: text;
+			color: #ccc;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<input type="text" id="txt">
+		<label for="txt" id="meg">必败的国际大牌</label>
+	</div>
+	<script type="text/javascript">
+		function $(id){
+			return document.getElementById(id);
+		}
+		//自动获取焦点
+		$("txt").focus();
+		//检测浏览器输入事件，前面是一般浏览器写法，后面为了兼容ie678
+		$("txt").oninput=$("txt").onpropertychange = function(){
+			if($("txt").value==""){
+				$("meg").style.display="block";
+			}else{
+				$("meg").style.display="none";
+			}
+		}
+	</script>
+</body>
+</html>
