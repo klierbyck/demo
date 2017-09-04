@@ -44,17 +44,12 @@ router.get('/mockapi', function(req, res, next){
 //使用router
 app.use(router);
 
-
-
-
-
-
-
-// var xhrurl = 'http://172.30.208.107:9999/mockapi';
+//前端获取数据
+// var url = 'http://172.30.208.107:9999/mockapi';
 // $.ajax({
 //     type : "get",
 //     async : false,
-//     url :xhrurl,
+//     url : url,
 //     cache : false,
 //     dataType : "jsonp",
 //     success : function(json){
