@@ -1,0 +1,41 @@
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript" src="jquery.js"></script>
+</head>
+
+<body>
+
+    <select>
+        <option value="volvo">Volvo</option>
+        <option value="saab" selected = true >Saab</option>
+        <option value="opel">Opel</option>
+        <option value="audi">Audi</option>
+    </select>
+</body>
+<script>
+    $('select').on("change", function() {
+        var ops = $("option");
+        for (var i = 0; i < ops.length; i++) {
+            if (ops[i].value == this.value) {
+                $(ops[i]).attr("selected", true).siblings().attr("selected", false);
+                localStorage.setItem("val", this.value);
+            }
+        }
+    })
+    window.onload = function() {
+        var val = localStorage.getItem("val");
+        var ops = $("option");
+        for (var i = 0; i < ops.length; i++) {
+            if (ops[i].value == val) {
+                $(ops[i]).attr("selected", true).siblings().attr("selected", false);
+            }
+        }
+    }
+</script>
+</html>
