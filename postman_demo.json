@@ -1,0 +1,239 @@
+{
+	"id": "d86379b4-d778-c2ff-fdef-8d2e72c3f0f0",
+	"name": "Postman-demo",
+	"description": "",
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZGV2YWRtaW4uYXBpLmRhdGEuY2Fhc2RhdGEuY29tL2F1dGhvcml6YXRpb25zIiwiaWF0IjoxNTE1OTgxMzgzLCJleHAiOjE1MTYwNjc3ODMsIm5iZiI6MTUxNTk4MTM4MywianRpIjoiRGMxT2ZmbnR4Uk1DdGxlVSIsInN1YiI6NDF9.T9AqQXu9xSr_BNn3hOF90Y12cFdcgnQ-TLRRHmmQAOs",
+				"type": "string"
+			}
+		]
+	},
+	"events": null,
+	"variables": [],
+	"order": [
+		"1159213d-ab26-7eec-1bd8-a2a59c5cb73d",
+		"afcbcc45-e9b7-11bd-1e35-f4fd89d3bf28",
+		"f467c26d-0d7c-5736-d41f-71cf8f323c7a"
+	],
+	"folders_order": [],
+	"folders": [],
+	"requests": [
+		{
+			"id": "1159213d-ab26-7eec-1bd8-a2a59c5cb73d",
+			"name": "获取菜单",
+			"url": "http://devadmin.api.data.caasdata.com/menus",
+			"description": null,
+			"data": [],
+			"dataMode": "params",
+			"headerData": [
+				{
+					"key": "Accept",
+					"value": "application/vnd.huox.admin+json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded; charset=UTF-8",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "X-Requested-With",
+					"value": "XMLHttpRequest",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZGV2YWRtaW4uYXBpLmRhdGEuY2Fhc2RhdGEuY29tL2F1dGhvcml6YXRpb25zIiwiaWF0IjoxNTIxNDI2MDI3LCJleHAiOjE1MjIwMzA4MjcsIm5iZiI6MTUyMTQyNjAyNywianRpIjoicndocWluT1J3YzEzZXFzZSIsInN1YiI6NDB9.llM09syHPu9_nah_JWyKO370hVfz7Q6VmR9I7rUIVCg",
+						"type": "string"
+					}
+				]
+			},
+			"events": null,
+			"folder": null,
+			"headers": "Accept: application/vnd.huox.admin+json\nContent-Type: application/x-www-form-urlencoded; charset=UTF-8\nX-Requested-With: XMLHttpRequest\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "afcbcc45-e9b7-11bd-1e35-f4fd89d3bf28",
+			"name": "保存信息",
+			"url": "http://devadmin.api.data.caasdata.com/program/4175",
+			"description": null,
+			"data": [
+				{
+					"key": "picUrl",
+					"value": "",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "title",
+					"value": "熊吱吱finfin",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "categoryId",
+					"value": "9",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "intro",
+					"value": "网络红人，原创视频博主。视频风格轻松有趣。",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "cpId",
+					"value": "",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "tags",
+					"value": "",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "typeId",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"headerData": [
+				{
+					"key": "Accept",
+					"value": "application/vnd.huox.admin+json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "X-Requested-With",
+					"value": "XMLHttpRequest",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "PUT",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZGV2YWRtaW4uYXBpLmRhdGEuY2Fhc2RhdGEuY29tL2F1dGhvcml6YXRpb25zIiwiaWF0IjoxNTIxNDI2MDI3LCJleHAiOjE1MjIwMzA4MjcsIm5iZiI6MTUyMTQyNjAyNywianRpIjoicndocWluT1J3YzEzZXFzZSIsInN1YiI6NDB9.llM09syHPu9_nah_JWyKO370hVfz7Q6VmR9I7rUIVCg",
+						"type": "string"
+					}
+				]
+			},
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "677fdbe9-70d4-48ba-9069-e6df80586d03",
+						"type": "text/javascript",
+						"exec": [
+							"tests['状态码是200'] = responseCode.code === 200;",
+							"",
+							"pm.test(\"Sandbox方式状态码是200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"tests['响应时间小于500ms'] = responseTime < 500;",
+							"",
+							"pm.test(\"Sandbox方式响应时间小于500ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);",
+							"});",
+							"",
+							"tests['数据长度等于8'] =JSON.parse(responseBody).data.length === 8;",
+							"",
+							"pm.test(\"Sandbox方式数据长度等于8'\", function () {",
+							"    var jsonData = pm.response.json().data.length;",
+							"    pm.expect(jsonData).to.eql(8);",
+							"});"
+						]
+					}
+				}
+			],
+			"folder": null,
+			"headers": "Accept: application/vnd.huox.admin+json\nContent-Type: application/x-www-form-urlencoded\nX-Requested-With: XMLHttpRequest\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "f467c26d-0d7c-5736-d41f-71cf8f323c7a",
+			"name": "子专辑详情列表",
+			"url": "http://devadmin.api.data.caasdata.com/program/4175/edit-albums",
+			"description": null,
+			"data": [],
+			"dataMode": "params",
+			"headerData": [
+				{
+					"key": "Accept",
+					"value": "application/vnd.huox.admin+json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded; charset=UTF-8",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "X-Requested-With",
+					"value": "XMLHttpRequest",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZGV2YWRtaW4uYXBpLmRhdGEuY2Fhc2RhdGEuY29tL2F1dGhvcml6YXRpb25zIiwiaWF0IjoxNTIxNDI2MDI3LCJleHAiOjE1MjIwMzA4MjcsIm5iZiI6MTUyMTQyNjAyNywianRpIjoicndocWluT1J3YzEzZXFzZSIsInN1YiI6NDB9.llM09syHPu9_nah_JWyKO370hVfz7Q6VmR9I7rUIVCg",
+						"type": "string"
+					}
+				]
+			},
+			"events": null,
+			"folder": null,
+			"headers": "Accept: application/vnd.huox.admin+json\nContent-Type: application/x-www-form-urlencoded; charset=UTF-8\nX-Requested-With: XMLHttpRequest\n",
+			"pathVariables": {}
+		}
+	]
+}
