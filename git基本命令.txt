@@ -2,7 +2,7 @@
 
 2.在cmd中输入"$ git init"初始化一个本地的仓库
 
-3.使用"$ git add '文件名'"将一个没有被跟踪的文件添加到跟踪列表或"$ git add --all"将所有未被跟踪的文件添加到跟踪列表，如果不想添加某些文件到跟踪列表可以在项目的根目录建立一个.gitignore的文件，将要忽视的文件名添加到此文件的内容中
+3.使用"$ git add '文件名'"将一个没有被跟踪的文件添加到跟踪列表或"$ git add --all"/"$ git add ."将所有未被跟踪的文件添加到跟踪列表，如果不想添加某些文件到跟踪列表可以在项目的根目录建立一个.gitignore的文件，将要忽视的文件名添加到此文件的内容中
 注意：提交到缓存区却未提交到仓库可以通过$ git reset HEAD "文件名"从缓存区拿回来
 
 4.通过"$ git status"查看本地仓储的状态;"$ git status -s"是输出简要的变更日志，通过git log获取详细日志
@@ -31,7 +31,13 @@
 	删除本地已合并分支：先到master，然后$ git branch –d '分支名'
 	删除本地未合并分支：先到master，然后$ git branch –D '分支名'
 	删除远端分支：先到master，然后$ git push origin –-delete '分支名'
-	合并分支：先到master，然后使用$ git merge origin '分支名'
+	合并分支：先到master，然后使用$ git merge origin '分支名' 
+	场景1：在branch1开发并进行多个提交，此时切换到branch2，想把之前branch1分支提交的commit都【复制】过来，怎么办？
+	      使用$ git cherry-pick 'branch1的commitid'获取branch1上的单个commit
+	      使用$ git cherry-pick 'branch1的commitid1..commitidn'获取branch1上的第2个至第n个commit
+      	场景2：如想pull 最新代码， 又不想commit或者为了fix一个紧急的bug,先stash,改完bug之后再stash pop, 继续原来的工作。
+	      $ git stash
+	      $ git stash pop
 
 11.从远程下载一份最新的代码到本地，使用$ git clone '远端地址'
 
