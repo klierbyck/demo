@@ -102,6 +102,10 @@ The key fingerprint is:
 	$ git checkout dev
 12.将本地dev分支上的代码提交到服务器上。
 	$ git push
+13.临时暂存
+	$ git stash
+14.取出临时暂存
+	$ git stash pop
 
 
 
