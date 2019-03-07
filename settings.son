@@ -1,0 +1,106 @@
+{
+    // 调整窗口的缩放级别。原始大小是 0，每次递增(例如 1)或递减(例如 -1)表示放大或缩小 20%。也可以输入小数以便以更精细的粒度调整缩放级别。
+    "window.zoomLevel": 1,
+    // 指定工作台中使用的颜色主题。
+    "workbench.colorTheme": "Monokai",
+    // 指定在工作台中使用的图标主题
+    "workbench.iconTheme": "vscode-icons",
+    // 窗口失去焦点自动保存
+    "files.autoSave": "off",
+    // 如果设置为 "true"，将不再显示扩展建议的通知。
+    "extensions.ignoreRecommendations": true,
+    // 如果设置成 true，关于新的版本消息将不再显示
+    "vsicons.dontShowNewVersionMessage": true,
+    // 控制是否将打开的编辑器显示为预览。
+    "workbench.editor.enablePreview": false,
+    //代码缩进风格4个字符
+    "editor.tabSize": 4,
+    // 控制编辑器是否应在键入后自动设置行的格式
+    "editor.formatOnType": false,
+    // 保存时取消自动格式化
+    "editor.formatOnSave": false,
+    // 编辑粘贴取消自动格式化
+    "editor.formatOnPaste": false,
+    // 控制编辑器中呈现空白字符的方式为“边界”，不会在单词之间呈现单空格。
+    "editor.renderWhitespace": "boundary",
+    // 控制光标动画样式
+    "editor.cursorBlinking": "smooth",
+    // 终端在 Windows 使用的 shell 路径。
+    "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
+    // 用鼠标添加多个光标时使用的修改键。
+    "editor.multiCursorModifier": "ctrlCmd",
+    // 控制是否将代码段与其他建议一起显示以及它们的排序方式。
+    "editor.snippetSuggestions": "top",
+    // 配置语言的文件关联
+    "files.associations": {
+        "*.vue": "vue"
+    },
+    //打开或关闭自动保存
+    "eslint.autoFixOnSave": false,
+    "eslint.options": {
+        "extensions": [
+            ".js",
+            ".vue"
+        ]
+    },
+    //设置Eslint需要验证的语言
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        {
+            "language": "html",
+            "autoFix": true
+        },
+        {
+            "language": "vue",
+            "autoFix": true
+        }
+    ],
+    //配置 glob 模式以在搜索中排除文件和文件夹。
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/dist": true
+    },
+    // 为指定的语法定义配置文件或使用带有特定规则的配置文件。
+    "emmet.syntaxProfiles": {
+        "javascript": "jsx",
+        "vue": "html",
+        "vue-html": "html"
+    },
+    //px转rem比例
+    "px-to-rem.px-per-rem": 67.5,
+    //默认格式化js插件
+    "vetur.format.defaultFormatter.js": "vscode-typescript",
+    //默认格式化html插件
+    "vetur.format.defaultFormatter.html": "prettyhtml",
+    //vetur格式化时初始化script缩进
+    "vetur.format.scriptInitialIndent": true,
+    //vetur格式化时初始化style缩进
+    "vetur.format.styleInitialIndent": true,
+    //vetur格式化时初始化style缩进
+    "vetur.format.options.tabSize": 4,
+    //vetur格式化时初始化html配置
+    "vetur.format.defaultFormatterOptions": {
+        "js-beautify-html": {
+            //设置html属性是否换行
+            "wrap_attributes": "auto"
+        },
+        // "prettyhtml": {
+        //     "printWidth": 120,
+        //     "singleQuote": false,
+        //     "wrapAttributes": false,
+        //     "sortAttributes": false
+        // }
+    },
+    //每列显示内容长多，超出时控制编辑器列的换行。
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.wordWrapColumn": 100,
+    //创建人，修改人
+    "fileheader.Author": "klierbyck",
+    "fileheader.LastModifiedBy": "klierbyck",
+    // 在函数参数括号前定义空格处理。需要 TypeScript >= 2.1.5。
+    "typescript.format.insertSpaceBeforeFunctionParenthesis": true,
+    // 在函数参数括号前定义空格处理。需要 TypeScript >= 2.1.5。
+    "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
+}
