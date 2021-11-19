@@ -1,0 +1,37 @@
+// 父类
+function Site() {
+    this.name = 'Site';
+}
+Site.prototype.create = function (domain) {
+    console.log(this.name + '---' + domain);
+};
+// 子类
+function Itbilu() {
+    Site.call(this); //调用基类的构造函数
+}
+// 继承父类
+Itbilu.prototype = Object.create(Site.prototype);
+Itbilu.prototype.constructor = Itbilu;
+// 创建类实例
+var itbilu = new Itbilu();
+itbilu.create('itbilu.com');
+
+// 父类
+function Site() {
+    this.name = 'Site';
+}
+Site.prototype.create = function (domain) {
+    console.log(this.name + '---' + domain);
+};
+// 子类
+function Itbilu() {
+    Site.call(this); //调用基类的构造函数
+}
+// 继承父类
+function F() {}
+F.prototype = Site.prototype;
+Itbilu.prototype = new F();
+Itbilu.prototype.constructor = Itbilu;
+// 创建类实例
+var itbilu = new Itbilu();
+itbilu.create('itbilu.com');
